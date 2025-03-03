@@ -2,8 +2,11 @@ FROM php:7.4-fpm-alpine
 WORKDIR /app
 
 # Install dependencies
-RUN apk add --no-cache nginx supervisor \
+RUN apk add --no-cache nginx supervisor python3 py3-pip python3-dev \
+    gcc musl-dev linux-headers gfortran build-base pkgconf \
     && docker-php-ext-install pdo pdo_mysql
+
+RUN pip3 install --no-cache-dir numpy pandas matplotlib scikit-learn
 
 # Copy configuration files
 COPY deploy/supervisor/supervisord.conf /etc/supervisord.conf

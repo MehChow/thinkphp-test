@@ -17,6 +17,6 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-    'yoman' => 'api/ApiController/yoman',
-    'finallyWorkingHuh' => 'api/ApiController/finallyWorkingHuh',
+    'test-script' => 'api/script.CalculateNIR/testScript',
+    'calculate-similarity' => ['api/script.CalculateNIR/calculateSimilarity', ['method' => 'post']],
 ];
