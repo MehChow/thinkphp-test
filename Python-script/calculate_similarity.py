@@ -8,7 +8,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 from handleConversion import create_sample_data
 
-def calculate_similarity(pixels, stdloc='/app/constant/Agarwood_standard/AgarwoodPowder_NYCX_C.csv'):
+def calculate_similarity(pixels, category, productName):
+    # Dynamically construct stdloc based on category and productName
+    stdloc = f'/app/constant/{category}_standard/{productName}.csv'
+
     # Generate sample data in memory
     sample_data = create_sample_data(pixels)
     
@@ -77,12 +80,15 @@ def calculate_similarity(pixels, stdloc='/app/constant/Agarwood_standard/Agarwoo
     return similarity_message
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python calculate_similarity.py <pixels_json>")
+    if len(sys.argv) != 4:
+        print("Usage: python calculate_similarity.py <pixels_json> <category> <productName>")
         sys.exit(1)
     
     # Parse pixels array from command-line argument
     pixels_json = sys.argv[1]
+    category = sys.argv[2]
+    productName = sys.argv[3]
+    
     pixels = json.loads(pixels_json)
-    similarity = calculate_similarity(pixels)
+    similarity = calculate_similarity(pixels, category, productName)
     print(similarity)

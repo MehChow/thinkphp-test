@@ -24,12 +24,30 @@ class CalculateNIR
         if (!isset($input['pixels']) || !is_array($input['pixels']) || empty($input['pixels'])) {
             return json(['error' => 'Invalid or missing pixel array'], 400);
         }
+
+        // Validate category
+        if (!isset($input['category']) || !is_string($input['category']) || empty($input['category'])) {
+            return json(['error' => 'Invalid or missing category'], 400);
+        }
+        
+        // Validate grade
+        if (!isset($input['productName']) || !is_string($input['productName']) || empty($input['productName'])) {
+            return json(['error' => 'Invalid or missing productName'], 400);
+        }
         
         $pixels = $input['pixels'];
+        $category = $input['category'];
+        $productName = $input['productName'];
+
         $pixels_json = json_encode($pixels);
+        $category_escaped = escapeshellarg($category);
+        $productName_escaped = escapeshellarg($productName);
         
         // Build and execute the Python command
-        $command = 'python3 /app/python-script/calculate_similarity.py ' . escapeshellarg($pixels_json);
+        $command = 'python3 /app/python-script/calculate_similarity.py ' . 
+                   escapeshellarg($pixels_json) . ' ' . 
+                   $category_escaped . ' ' . 
+                   $productName_escaped;
         $output = shell_exec($command);
         
         // Check for execution errors
