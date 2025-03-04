@@ -14,7 +14,7 @@ COPY deploy/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY deploy/nginx/conf.d/ /etc/nginx/conf.d/
 
 # Copy application files
-COPY . /app
+COPY . .
 
 # Install Composer
 COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
