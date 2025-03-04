@@ -1,7 +1,14 @@
 services:
-  thinkphp:
+  filix-console:
     build: .
     ports:
       - "80:80"
-    volumes:
+    volumes: # THISSSSSSSSSSSSS
       - .:/app
+    environment:
+      DB_HOST: filix-mysql-uat.cp4m606scbi0.ap-southeast-1.rds.amazonaws.com
+      DB_DATABASE: filix
+      DB_USERNAME: filix_console
+      DB_PASSWORD: dre3rUfE*rE85mi?wa3Xe3lHAwr2h=cago9Re*_Hl
+      DB_PORT: 3306
+      DEPLOYMENT_STAGE: PRD

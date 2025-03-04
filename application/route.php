@@ -17,6 +17,6 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-    'test-script' => 'api/script.CalculateNIR/testScript',
+    'hello-world' => ['api/script.CalculateNIR/helloWorld', ['method' => 'get']],
     'calculate-similarity' => ['api/script.CalculateNIR/calculateSimilarity', ['method' => 'post']],
 ];

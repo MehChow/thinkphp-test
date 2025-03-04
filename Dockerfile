@@ -26,6 +26,12 @@ RUN composer install
 RUN chown -R nobody:nobody /app \
     && chmod -R 775 /app/runtime
 
+ENV DB_HOST=
+ENV DB_DATABASE=
+ENV DB_USERNAME=
+ENV DB_PASSWORD=
+ENV DB_PORT=    
+
 # Expose port
 EXPOSE 80
 
